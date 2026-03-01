@@ -387,9 +387,19 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.8rem;
     margin-bottom: 20px;
     box-shadow: 0 10px 25px rgba(212, 165, 116, 0.3);
+    transition: all 0.3s ease;
+}
+
+.icon-box:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.icon-box svg {
+    width: 30px;
+    height: 30px;
+    fill: white;
 }
 
 .quote-box {
@@ -460,6 +470,71 @@ body {
     to { opacity: 1; }
 }
 
+@keyframes morphIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) rotateX(90deg);
+    }
+    50% {
+        transform: scale(1.05) rotateX(0deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotateX(0deg);
+    }
+}
+
+@keyframes slideInMorph {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px) scale(0.9);
+    }
+    60% {
+        transform: translateX(10px) scale(1.02);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+@keyframes textReveal {
+    0% {
+        opacity: 0;
+        clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+    }
+    100% {
+        opacity: 1;
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+}
+
+.slide.visible .slide-title {
+    animation: morphIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.slide.visible .slide-description {
+    animation: textReveal 1s ease 0.3s forwards;
+}
+
+.slide.visible .bullet-list li {
+    animation: slideInMorph 0.6s ease forwards;
+}
+
+.slide.visible .content-card {
+    animation: morphIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.slide.visible .feature-box {
+    animation: morphIn 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s forwards;
+    opacity: 0;
+}
+
+.slide.visible .quote-box {
+    animation: slideInMorph 0.8s ease 0.4s forwards;
+    opacity: 0;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .slide {
@@ -516,7 +591,7 @@ body {
     <div class="presentation-container" id="container">
 
         <!-- Slide 0: Hero -->
-        <section class="slide hero-slide visible" data-slide="0" style="background: linear-gradient(135deg, rgba(10,10,10,0.8), rgba(26,20,16,0.9)), url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=1600&q=80') center/cover;">
+        <section class="slide hero-slide visible" data-slide="0" style="background: linear-gradient(135deg, rgba(10,10,10,0.85), rgba(26,20,16,0.9)), url('https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=1600&q=80') center/cover;">
             <div class="slide-content">
                 <h1 class="hero-title">Kasaysayan ng Pagsasaling-wika sa Pilipinas</h1>
                 <p class="hero-subtitle">Isang Paglalakbay sa Limang Yugto ng Kasiglahan</p>
@@ -553,14 +628,23 @@ body {
                 
                 <div class="content-grid">
                     <div class="content-card">
+                        <div class="icon-box">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/></svg>
+                        </div>
                         <h3 class="card-title">Kahalagahan</h3>
                         <p class="card-text">Nagsisilbing tulay sa pagitan ng iba't ibang kultura at wika</p>
                     </div>
                     <div class="content-card">
+                        <div class="icon-box">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                        </div>
                         <h3 class="card-title">Layunin</h3>
                         <p class="card-text">Pagpapayaman ng pambansang panitikan at pagkakakilanlan</p>
                     </div>
                     <div class="content-card">
+                        <div class="icon-box">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 3L4 14h7l-2 7 9-11h-7l2-7z"/></svg>
+                        </div>
                         <h3 class="card-title">Epekto</h3>
                         <p class="card-text">Pag-unlad ng edukasyon at pagpapalaganap ng kaalaman</p>
                     </div>
@@ -569,7 +653,7 @@ body {
         </section>
 
         <!-- Slide 2: Unang Yugto Title -->
-        <section class="slide hero-slide" data-slide="2" style="background: linear-gradient(135deg, rgba(10,10,10,0.8), rgba(26,20,16,0.9)), url('https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=1600&q=80') center/cover;">
+        <section class="slide hero-slide" data-slide="2" style="background: linear-gradient(135deg, rgba(10,10,10,0.85), rgba(26,20,16,0.9)), url('https://images.unsplash.com/photo-1564760055775-d63b17a55c44?w=1600&q=80') center/cover;">
             <div class="slide-content">
                 <p class="section-number">KABANATA I</p>
                 <h1 class="hero-title">Unang Yugto ng Kasiglahan</h1>
@@ -670,7 +754,7 @@ body {
         </section>
 
         <!-- Slide 6: Ikalawang Yugto Title -->
-        <section class="slide hero-slide" data-slide="6" style="background: linear-gradient(135deg, rgba(10,10,10,0.8), rgba(26,20,16,0.9)), url('https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=1600&q=80') center/cover;">
+        <section class="slide hero-slide" data-slide="6" style="background: linear-gradient(135deg, rgba(10,10,10,0.85), rgba(26,20,16,0.9)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1600&q=80') center/cover;">
             <div class="slide-content">
                 <p class="section-number">KABANATA II</p>
                 <h1 class="hero-title">Ikalawang Yugto ng Kasiglahan</h1>
@@ -803,7 +887,7 @@ body {
         </section>
 
         <!-- Slide 11: Ikatlong Yugto Title -->
-        <section class="slide hero-slide" data-slide="11" style="background: linear-gradient(135deg, rgba(10,10,10,0.8), rgba(26,20,16,0.9)), url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=1600&q=80') center/cover;">
+        <section class="slide hero-slide" data-slide="11" style="background: linear-gradient(135deg, rgba(10,10,10,0.85), rgba(26,20,16,0.9)), url('https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=1600&q=80') center/cover;">
             <div class="slide-content">
                 <p class="section-number">KABANATA III</p>
                 <h1 class="hero-title">Ikatlong Yugto ng Kasiglahan</h1>
@@ -888,7 +972,7 @@ body {
         </section>
 
         <!-- Slide 14: Ikaapat na Yugto Title -->
-        <section class="slide hero-slide" data-slide="14" style="background: linear-gradient(135deg, rgba(10,10,10,0.8), rgba(26,20,16,0.9)), url('https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=1600&q=80') center/cover;">
+        <section class="slide hero-slide" data-slide="14" style="background: linear-gradient(135deg, rgba(10,10,10,0.85), rgba(26,20,16,0.9)), url('https://images.unsplash.com/photo-1569163139394-de4798aa62b6?w=1600&q=80') center/cover;">
             <div class="slide-content">
                 <p class="section-number">KABANATA IV</p>
                 <h1 class="hero-title">Ikaapat na Yugto ng Kasiglahan</h1>
@@ -998,7 +1082,9 @@ body {
                 <h2 class="slide-title">Pagsasalin ng Panitikang Afro-Asian</h2>
                 
                 <div class="feature-box">
-                    <div class="icon-box">🌏</div>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                    </div>
                     <p class="slide-description">
                         Bilang bahagi ng ikaapat na yugto, nakatuon din ang ilang manunulat sa pagsasalin ng <span class="highlight-text">panitikang Afro-Asian</span>. Kasama na ito sa kurikulum ng hayskul, bagama't Ingles pa ang midyum, at inaasahang ituturo na sa Filipino sa hinaharap.
                     </p>
@@ -1025,17 +1111,23 @@ body {
                 
                 <div class="content-grid">
                     <div class="content-card">
-                        <div class="icon-box">📚</div>
+                        <div class="icon-box">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
+                        </div>
                         <h3 class="card-title">Malawak na Pananaw</h3>
                         <p class="card-text">Nagbibigay ng mas malawak na pananaw sa panitikan ng Asya at Africa</p>
                     </div>
                     <div class="content-card">
-                        <div class="icon-box">🌏</div>
+                        <div class="icon-box">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                        </div>
                         <h3 class="card-title">Pag-unawa ng Kultura</h3>
                         <p class="card-text">Nakakatulong sa pag-unawa ng kultura ng mga kalapit-bansa</p>
                     </div>
                     <div class="content-card">
-                        <div class="icon-box">🤝</div>
+                        <div class="icon-box">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                        </div>
                         <h3 class="card-title">Regional Identity</h3>
                         <p class="card-text">Nagpapalakas ng regional at continental na pagkakakilanlan</p>
                     </div>
@@ -1063,21 +1155,27 @@ body {
                 
                 <div class="content-grid">
                     <div class="content-card">
-                        <div class="icon-box">🏢</div>
+                        <div class="icon-box">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/></svg>
+                        </div>
                         <h3 class="card-title">Toyota Foundation</h3>
                         <p class="card-text">
                             Pinondohan ng Toyota Foundation sa pakikipagtulungan ng Solidarity Foundation ang proyekto upang isalin sa Filipino ang mga piling panitikan ng kalapit-bansa.
                         </p>
                     </div>
                     <div class="content-card">
-                        <div class="icon-box">🎭</div>
+                        <div class="icon-box">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15 11V5l-3-3-3 3v2H3v14h8v-4h2v4h8V11h-6zm-8 8H5v-2h2v2zm0-4H5v-2h2v2zm0-4H5V9h2v2zm6 4h-2v-2h2v2zm0-4h-2V9h2v2zm0-4h-2V5h2v2zm6 12h-2v-2h2v2zm0-4h-2v-2h2v2z"/></svg>
+                        </div>
                         <h3 class="card-title">Rolando Tinio at Behn Cervantes</h3>
                         <p class="card-text">
                             Sa drama, patuloy ang pagsasalin ng banyagang dula sa pangunguna nina Rolando Tinio at Behn Cervantes. Nag-ambag sila sa pagpapayaman ng dulang Pilipino.
                         </p>
                     </div>
                     <div class="content-card">
-                        <div class="icon-box">🎨</div>
+                        <div class="icon-box">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v9.28c-.47-.17-.97-.28-1.5-.28C8.01 12 6 14.01 6 16.5S8.01 21 10.5 21c2.31 0 4.2-1.75 4.45-4H15V6h4V3h-7z"/></svg>
+                        </div>
                         <h3 class="card-title">NCCA at P.E.T.A.</h3>
                         <p class="card-text">
                             Nakikipag-ugnayan ang National Commission for Culture and the Arts (NCCA) sa iba't ibang samahan tulad ng Philippine Educational Theater Association (P.E.T.A.) upang isulong ang mga proyektong nagpapalago sa wikang pambansa.
@@ -1098,7 +1196,9 @@ body {
                 </div>
                 
                 <div class="feature-box">
-                    <div class="icon-box">🏛️</div>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3z"/></svg>
+                    </div>
                     <p class="slide-description">
                         Ang Komisyon sa Wikang Filipino (dating Surian/Linangan ng Wikang Pambansa) ang nangunguna sa pagsasaling-wika sa bansa. Nagsasalin mula sa karatula ng pamahalaan hanggang sa maseselang dokumento gaya ng Saligang-batas at mga kasunduan sa panlabas.
                     </p>
@@ -1137,21 +1237,27 @@ body {
                 
                 <div class="content-grid">
                     <div class="content-card">
-                        <div class="icon-box">👥</div>
+                        <div class="icon-box">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                        </div>
                         <h3 class="card-title">Mas Malawak na Partisipasyon</h3>
                         <p class="card-text">
                             Ang paggamit ng Filipino sa edukasyon ay magbubukas ng mas maraming oportunidad para sa masang Pilipino na makapag-aral at makabahagi sa pambansang diskurso.
                         </p>
                     </div>
                     <div class="content-card">
-                        <div class="icon-box">⭐</div>
+                        <div class="icon-box">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        </div>
                         <h3 class="card-title">Pagpapahalaga sa Propesyon</h3>
                         <p class="card-text">
                             Ang pagsasaling-wika ay kikilalanin bilang isang mahalagang propesyon na nangangailangan ng espesyalisadong kaalaman at kasanayan.
                         </p>
                     </div>
                     <div class="content-card">
-                        <div class="icon-box">🎭</div>
+                        <div class="icon-box">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v9.28c-.47-.17-.97-.28-1.5-.28C8.01 12 6 14.01 6 16.5S8.01 21 10.5 21c2.31 0 4.2-1.75 4.45-4H15V6h4V3h-7z"/></svg>
+                        </div>
                         <h3 class="card-title">Pagpapalakas ng Kultura</h3>
                         <p class="card-text">
                             Ang pambansang kultura at panitikan ay lalo pang yayaman sa pamamagitan ng patuloy na pagsasalin at pagpapalaganap ng iba't ibang akda.
@@ -1172,7 +1278,9 @@ body {
                 </div>
                 
                 <div class="feature-box">
-                    <div class="icon-box">📖</div>
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
+                    </div>
                     <h3 class="card-title" style="margin-bottom: 20px;">Limang Yugto ng Kasiglahan</h3>
                 </div>
                 
@@ -1192,7 +1300,7 @@ body {
         </section>
 
         <!-- Slide 24: Closing -->
-        <section class="slide hero-slide" data-slide="24" style="background: linear-gradient(135deg, rgba(10,10,10,0.8), rgba(26,20,16,0.9)), url('https://images.unsplash.com/photo-1516979187457-637abb4f9353?w=1600&q=80') center/cover;">
+        <section class="slide hero-slide" data-slide="24" style="background: linear-gradient(135deg, rgba(10,10,10,0.85), rgba(26,20,16,0.9)), url('https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=1600&q=80') center/cover;">
             <div class="slide-content">
                 <h1 class="hero-title">Maraming Salamat</h1>
                 <p class="hero-subtitle">Sa inyong pakikinig at atensyon</p>
