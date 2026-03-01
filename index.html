@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kasaysayan ng Pagsasaling-wika sa Pilipinas</title>
     <style>
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
 * {
     margin: 0;
@@ -14,198 +14,295 @@
 }
 
 :root {
-    --primary: #2c2416;
-    --secondary: #8b7355;
+    --bg-dark: #0a0a0a;
+    --bg-light: #ffffff;
+    --text-dark: #1a1a1a;
+    --text-light: #f5f5f5;
     --accent: #d4a574;
-    --light: #f8f6f3;
-    --dark: #1a1410;
+    --accent-dark: #8b7355;
+    --shadow: rgba(0, 0, 0, 0.1);
 }
 
-html, body {
-    width: 100%;
-    height: 100%;
-    font-family: 'Inter', sans-serif;
-    background: var(--dark);
-    overflow: hidden;
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-light);
+    overflow-x: hidden;
 }
 
 .presentation-container {
     position: relative;
     width: 100%;
-    height: 100%;
-    perspective: 1500px;
+    min-height: 100vh;
 }
 
 .slide {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateX(100%) scale(0.9);
-    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--light);
+    padding: 120px 20px;
+    position: relative;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.slide::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 100%);
-    z-index: 1;
-}
-
-.slide.active {
+.slide.visible {
     opacity: 1;
-    visibility: visible;
-    transform: translateX(0) scale(1);
-    z-index: 10;
-}
-
-.slide.prev {
-    transform: translateX(-100%) scale(0.9);
+    transform: translateY(0);
 }
 
 .slide-content {
-    position: relative;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
     z-index: 2;
-    max-width: 900px;
-    padding: 60px;
-    background: rgba(255,255,255,0.95);
-    backdrop-filter: blur(20px);
-    border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-    animation: slideUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.3s both;
 }
 
-.title-slide .slide-content {
-    background: rgba(0,0,0,0.7);
-    color: var(--light);
+/* Hero Slide */
+.hero-slide {
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1410 100%);
     text-align: center;
-    padding: 80px 60px;
 }
 
-.title-main {
-    font-family: 'Playfair Display', serif;
-    font-size: 4rem;
+.hero-title {
+    font-size: clamp(2.5rem, 8vw, 5rem);
     font-weight: 700;
-    margin-bottom: 20px;
     color: var(--accent);
-    letter-spacing: 2px;
-    animation: fadeInDown 1s ease 0.5s both;
+    margin-bottom: 30px;
+    line-height: 1.2;
+    animation: fadeInUp 1s ease 0.3s both;
 }
 
-.subtitle {
-    font-size: 1.8rem;
-    color: var(--light);
+.hero-subtitle {
+    font-size: clamp(1.2rem, 3vw, 2rem);
     font-weight: 300;
-    margin-bottom: 40px;
-    animation: fadeInUp 1s ease 0.7s both;
+    color: var(--text-light);
+    margin-bottom: 50px;
+    animation: fadeInUp 1s ease 0.5s both;
 }
 
-.presenter-info {
+.presenters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 60px;
+    animation: fadeIn 1s ease 0.7s both;
+}
+
+.presenter-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    padding: 20px 30px;
+    border-radius: 15px;
+    border: 1px solid rgba(212, 165, 116, 0.2);
+    transition: all 0.3s ease;
+}
+
+.presenter-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent);
+    box-shadow: 0 10px 30px rgba(212, 165, 116, 0.2);
+}
+
+.presenter-name {
     font-size: 1.1rem;
     color: var(--accent);
-    font-weight: 300;
-    line-height: 1.8;
-    animation: fadeIn 1s ease 0.9s both;
+    font-weight: 600;
+}
+
+/* Content Slides */
+.content-slide {
+    background: var(--bg-light);
+    color: var(--text-dark);
+}
+
+.section-number {
+    font-size: 1rem;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
 }
 
 .slide-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
-    color: var(--primary);
-    margin-bottom: 30px;
-    padding-bottom: 15px;
-    border-bottom: 2px solid var(--accent);
-    animation: fadeInLeft 0.8s ease 0.4s both;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 40px;
+    line-height: 1.3;
 }
 
-.bullet-points {
+.slide-description {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 40px;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.content-card {
+    background: #f9f9f9;
+    padding: 30px;
+    border-radius: 15px;
+    border-left: 4px solid var(--accent);
+    transition: all 0.3s ease;
+}
+
+.content-card:hover {
+    transform: translateX(10px);
+    box-shadow: 0 10px 30px var(--shadow);
+}
+
+.card-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 15px;
+}
+
+.card-text {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #666;
+}
+
+.bullet-list {
     list-style: none;
     padding: 0;
+    margin: 30px 0;
 }
 
-.bullet-points li {
+.bullet-list li {
     font-size: 1.1rem;
-    color: var(--primary);
-    margin: 20px 0;
-    padding-left: 30px;
+    line-height: 1.8;
+    color: #555;
+    padding: 15px 0 15px 40px;
     position: relative;
-    line-height: 1.7;
-    animation: fadeInLeft 0.6s ease both;
+    border-bottom: 1px solid #eee;
 }
 
-.bullet-points li:nth-child(1) { animation-delay: 0.5s; }
-.bullet-points li:nth-child(2) { animation-delay: 0.6s; }
-.bullet-points li:nth-child(3) { animation-delay: 0.7s; }
-.bullet-points li:nth-child(4) { animation-delay: 0.8s; }
-.bullet-points li:nth-child(5) { animation-delay: 0.9s; }
+.bullet-list li:last-child {
+    border-bottom: none;
+}
 
-.bullet-points li::before {
+.bullet-list li::before {
     content: '';
     position: absolute;
     left: 0;
-    top: 10px;
-    width: 8px;
-    height: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
     background: var(--accent);
     border-radius: 50%;
 }
 
-.content-box {
-    background: rgba(212, 165, 116, 0.1);
-    padding: 30px;
-    border-left: 4px solid var(--accent);
-    border-radius: 10px;
-    margin: 20px 0;
-    animation: fadeIn 0.8s ease 0.5s both;
-}
-
-.content-box p {
-    font-size: 1.1rem;
-    color: var(--primary);
-    line-height: 1.8;
-}
-
-.photo-container {
+.image-container {
     width: 100%;
-    height: 300px;
-    border-radius: 15px;
+    height: 400px;
+    border-radius: 20px;
     overflow: hidden;
-    margin: 20px 0;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    animation: scaleIn 0.8s ease 0.6s both;
+    margin: 40px 0;
+    box-shadow: 0 20px 60px var(--shadow);
 }
 
-.photo-container img {
+.image-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.5s ease;
 }
 
-.navigation {
-    position: fixed;
-    bottom: 40px;
+.image-container:hover img {
+    transform: scale(1.05);
+}
+
+.timeline {
+    position: relative;
+    padding: 40px 0;
+    margin: 40px 0;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
     left: 50%;
     transform: translateX(-50%);
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, var(--accent), transparent);
+}
+
+.timeline-item {
     display: flex;
     align-items: center;
-    gap: 30px;
-    background: rgba(0,0,0,0.8);
-    padding: 15px 40px;
-    border-radius: 50px;
-    backdrop-filter: blur(10px);
-    z-index: 100;
-    animation: slideUp 0.8s ease 1s both;
+    margin: 40px 0;
+    position: relative;
+}
+
+.timeline-item:nth-child(odd) {
+    flex-direction: row-reverse;
+}
+
+.timeline-content {
+    flex: 1;
+    padding: 30px;
+    background: #f9f9f9;
+    border-radius: 15px;
+    margin: 0 30px;
+}
+
+.timeline-year {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 10px;
+}
+
+.timeline-text {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #666;
+}
+
+/* Navigation */
+.nav-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(20px);
+    padding: 20px;
+    z-index: 1000;
+    border-top: 1px solid rgba(212, 165, 116, 0.2);
+}
+
+.nav-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
 }
 
 .nav-btn {
     background: var(--accent);
-    color: var(--dark);
+    color: var(--bg-dark);
     border: none;
     padding: 12px 30px;
     border-radius: 30px;
@@ -213,43 +310,59 @@ html, body {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
 }
 
 .nav-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 5px 20px rgba(212, 165, 116, 0.4);
+    background: #e8b876;
+}
+
+.nav-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.slide-indicator {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.indicator-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(212, 165, 116, 0.3);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.indicator-dot.active {
+    background: var(--accent);
+    width: 30px;
+    border-radius: 5px;
 }
 
 .slide-counter {
     color: var(--accent);
-    font-size: 1.1rem;
-    font-weight: 600;
-    min-width: 70px;
-    text-align: center;
-}
-
-.slide-number {
-    position: fixed;
-    top: 30px;
-    right: 40px;
-    color: var(--accent);
     font-size: 1rem;
-    opacity: 0.7;
     font-weight: 600;
-    z-index: 50;
 }
 
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* Progress Bar */
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: var(--accent);
+    z-index: 1001;
+    transition: width 0.3s ease;
 }
 
+/* Animations */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -261,431 +374,871 @@ html, body {
     }
 }
 
-@keyframes fadeInLeft {
-    from {
-        opacity: 0;
-        transform: translateX(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
 }
 
-@keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateY(40px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes scaleIn {
-    from {
-        opacity: 0;
-        transform: scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
+/* Responsive */
 @media (max-width: 768px) {
-    .slide-content {
-        padding: 40px 30px;
+    .slide {
+        padding: 100px 20px 150px;
     }
-    .title-main {
-        font-size: 2.5rem;
+    
+    .presenters {
+        flex-direction: column;
     }
-    .subtitle {
-        font-size: 1.3rem;
+    
+    .content-grid {
+        grid-template-columns: 1fr;
     }
-    .slide-title {
-        font-size: 1.8rem;
+    
+    .timeline::before {
+        left: 20px;
     }
-    .navigation {
-        bottom: 20px;
-        padding: 10px 20px;
+    
+    .timeline-item,
+    .timeline-item:nth-child(odd) {
+        flex-direction: row;
     }
+    
+    .timeline-content {
+        margin-left: 50px;
+        margin-right: 0;
+    }
+    
+    .nav-content {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .slide-indicator {
+        order: -1;
+    }
+}
+
+/* Scroll Snap */
+.presentation-container {
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 100vh;
+}
+
+.slide {
+    scroll-snap-align: start;
 }
     </style>
 </head>
 <body>
-    <div class="presentation-container">
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <div class="presentation-container" id="container">
 
-        <!-- Slide 0: Presenters -->
-        <section class="slide title-slide active" data-slide="0" style="background: linear-gradient(135deg, rgba(44,36,22,0.9), rgba(26,20,16,0.9)), url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=1600') center/cover;">
+        <!-- Slide 0: Hero -->
+        <section class="slide hero-slide visible" data-slide="0" style="background: linear-gradient(135deg, rgba(10,10,10,0.8), rgba(26,20,16,0.9)), url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=1600&q=80') center/cover;">
             <div class="slide-content">
-                <h1 class="title-main">Kasaysayan ng Pagsasaling-wika sa Pilipinas</h1>
-                <h2 class="subtitle">Presentasyon nina:</h2>
-                <p class="presenter-info">
-                    Yance Lean Pastoral<br>
-                    Arriane Mercado<br>
-                    Sofia Latonero<br>
-                    Micah Palmaira
+                <h1 class="hero-title">Kasaysayan ng Pagsasaling-wika sa Pilipinas</h1>
+                <p class="hero-subtitle">Isang Paglalakbay sa Limang Yugto ng Kasiglahan</p>
+                
+                <div class="presenters">
+                    <div class="presenter-card">
+                        <p class="presenter-name">Yance Lean Pastoral</p>
+                    </div>
+                    <div class="presenter-card">
+                        <p class="presenter-name">Arriane Mercado</p>
+                    </div>
+                    <div class="presenter-card">
+                        <p class="presenter-name">Sofia Latonero</p>
+                    </div>
+                    <div class="presenter-card">
+                        <p class="presenter-name">Micah Palmaira</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 1: Introduction -->
+        <section class="slide content-slide" data-slide="1">
+            <div class="slide-content">
+                <p class="section-number">PANIMULA</p>
+                <h2 class="slide-title">Ano ang Pagsasaling-wika?</h2>
+                <p class="slide-description">
+                    Ang pagsasaling-wika ay isang mahalagang proseso ng pagpapalipat ng kaalaman, kultura, at kaisipan mula sa isang wika patungo sa iba. Sa Pilipinas, ang kasaysayan nito ay sumasalamin sa ating kolonyal na nakaraan at pambansang pagkakakilanlan.
                 </p>
-            </div>
-            <div class="slide-number">0</div>
-        </section>
-
-        <!-- Slide 1: Kasaysayan Intro -->
-        <section class="slide" data-slide="1" style="background: url('https://images.unsplash.com/photo-1461360370896-922624d12aa1?w=1600') center/cover;">
-            <div class="slide-content">
-                <h2 class="slide-title">Kasaysayan ng Pagsasaling-wika sa Pilipinas</h2>
-                <div class="photo-container">
-                    <img src="https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=800" alt="History">
+                
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=1200&q=80" alt="Translation History">
+                </div>
+                
+                <div class="content-grid">
+                    <div class="content-card">
+                        <h3 class="card-title">Kahalagahan</h3>
+                        <p class="card-text">Nagsisilbing tulay sa pagitan ng iba't ibang kultura at wika</p>
+                    </div>
+                    <div class="content-card">
+                        <h3 class="card-title">Layunin</h3>
+                        <p class="card-text">Pagpapayaman ng pambansang panitikan at pagkakakilanlan</p>
+                    </div>
+                    <div class="content-card">
+                        <h3 class="card-title">Epekto</h3>
+                        <p class="card-text">Pag-unlad ng edukasyon at pagpapalaganap ng kaalaman</p>
+                    </div>
                 </div>
             </div>
-            <div class="slide-number">1</div>
         </section>
 
-        <!-- Slide 2: Panimula – Unang Yugto -->
-        <section class="slide" data-slide="2" style="background: url('https://images.unsplash.com/photo-1519074069444-1ba4fff66d16?w=1600') center/cover;">
+        <!-- Slide 2: Unang Yugto Title -->
+        <section class="slide hero-slide" data-slide="2" style="background: linear-gradient(135deg, rgba(10,10,10,0.8), rgba(26,20,16,0.9)), url('https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=1600&q=80') center/cover;">
             <div class="slide-content">
-                <h2 class="slide-title">Panimula – Unang Yugto ng Kasiglahan</h2>
-                <div class="photo-container">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800" alt="Spanish Era">
-                </div>
-                <ul class="bullet-points">
-                    <li>Nagsimula noong panahon ng pananakop ng mga Kastila</li>
-                    <li>Kapag nauugnay sa pagpapalaganap ng Kristiyanismo</li>
-                    <li>Isinalin sa Tagalog at iba pang katutubong wika ang katekismo</li>
-                </ul>
+                <p class="section-number">KABANATA I</p>
+                <h1 class="hero-title">Unang Yugto ng Kasiglahan</h1>
+                <p class="hero-subtitle">Panahon ng Pananakop ng Kastila (1565-1898)</p>
             </div>
-            <div class="slide-number">2</div>
         </section>
 
-        <!-- Slide 3: Simula ng Kolonisasyon -->
-        <section class="slide" data-slide="3" style="background: url('https://images.unsplash.com/photo-1476900164809-ff19b8ae5968?w=1600') center/cover;">
+        <!-- Slide 3: Unang Yugto - Simula -->
+        <section class="slide content-slide" data-slide="3">
             <div class="slide-content">
+                <p class="section-number">UNANG YUGTO</p>
                 <h2 class="slide-title">Simula ng Kolonisasyon</h2>
-                <div class="photo-container">
-                    <img src="https://images.unsplash.com/photo-1604537466158-719b1972feb8?w=800" alt="Colonization">
+                
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?w=1200&q=80" alt="Spanish Colonization">
                 </div>
-                <ul class="bullet-points">
-                    <li>1521 – Pagdating ni Magellan</li>
-                    <li>1565 – Pormal na pananakop ni Legazpi</li>
-                    <li>333 taong pananakop ng Espanya</li>
-                    <li>Pangunahing layunin: Kristiyanismo at Hispanisasyon</li>
-                </ul>
+                
+                <p class="slide-description">
+                    Ang unang yugto ng kasiglahan sa pagsasaling-wika ay nagsimula noong panahon ng pananakop ng mga Kastila. Ang pangunahing layunin ay ang pagpapalaganap ng Kristiyanismo sa pamamagitan ng pagsasalin ng mga relihiyosong teksto sa mga katutubong wika.
+                </p>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <p class="timeline-year">1521</p>
+                            <p class="timeline-text">Pagdating ni Ferdinand Magellan sa Pilipinas. Simula ng pakikipag-ugnayan sa mga Espanyol.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <p class="timeline-year">1565</p>
+                            <p class="timeline-text">Pormal na pananakop ni Miguel Lopez de Legazpi. Nagsimula ang sistematikong kolonisasyon.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <p class="timeline-year">1565-1898</p>
+                            <p class="timeline-text">333 taong pananakop ng Espanya. Pangunahing layunin: Kristiyanismo at Hispanisasyon.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="slide-number">3</div>
         </section>
 
-        <!-- Slide 4: Sistema ng Pagpapalaganap -->
-        <section class="slide" data-slide="4" style="background: url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=1600') center/cover;">
+        <!-- Slide 4: Unang Yugto - Relihiyon -->
+        <section class="slide content-slide" data-slide="4">
             <div class="slide-content">
-                <h2 class="slide-title">Sistema ng Pagpapalaganap ng Wikang Kastila</h2>
-                <div class="photo-container">
-                    <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800" alt="Education">
+                <p class="section-number">UNANG YUGTO</p>
+                <h2 class="slide-title">Relihiyon bilang Kasangkapan</h2>
+                
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=1200&q=80" alt="Religious Texts">
                 </div>
-                <ul class="bullet-points">
-                    <li>Hindi konsistent ang pagtuturo ng Kastila</li>
-                    <li>Nais ng hari na gamitin ang Kastila para sa relihiyon</li>
-                    <li>Hindi ito lubusang sinunod ng mga prayle</li>
+                
+                <p class="slide-description">
+                    Ang mga prayle at misyonero ay gumamit ng katutubong wika upang mas mabisang maipalaganap ang Kristiyanismo. Isinalin nila ang mga katekismo, doktrina, at iba pang panrelihiyong akda sa Tagalog at iba pang lokal na wika.
+                </p>
+                
+                <ul class="bullet-list">
+                    <li>Mas matagumpay ang pagpapalaganap ng Kristiyanismo gamit ang katutubong wika kaysa sa Kastila</li>
+                    <li>Mas madaling tanggapin ng mga katutubo ang mga aral kapag sa kanilang sariling wika</li>
+                    <li>Napreserba ang ilang salitang Kastila tulad ng "misa," "rosaryo," at "doktrina"</li>
+                    <li>Hindi itinuro ng mga prayle ang wikang Kastila sa takot na maghangad ng kalayaan ang mga Pilipino</li>
+                    <li>Posibleng maghimagsik laban sa Espanya kapag natutong magsalita ng Kastila</li>
                 </ul>
             </div>
-            <div class="slide-number">4</div>
         </section>
 
-        <!-- Slide 5: Dahilan Bakit Hindi Itinuro -->
-        <section class="slide" data-slide="5" style="background: url('https://images.unsplash.com/photo-1516979187457-637abb4f9353?w=1600') center/cover;">
+        <!-- Slide 5: Unang Yugto - Mga Salin -->
+        <section class="slide content-slide" data-slide="5">
             <div class="slide-content">
-                <h2 class="slide-title">Mga Dahilan Kung Bakit Hindi Itinuro ang Kastila</h2>
-                <div class="photo-container">
-                    <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800" alt="Native Language">
+                <p class="section-number">UNANG YUGTO</p>
+                <h2 class="slide-title">Mga Halimbawa ng Isinaling Akda</h2>
+                
+                <p class="slide-description">
+                    Maraming panrelihiyong akda ang isinalin sa panahong ito upang makatulong sa pagpapalaganap ng pananampalataya.
+                </p>
+                
+                <div class="content-grid">
+                    <div class="content-card">
+                        <h3 class="card-title">Sofronio C. Calderon</h3>
+                        <p class="card-text">"Ang Pag-ibig ng Mahiwagang Diyos" - Isang panrelihiyong akda tungkol sa pag-ibig ng Diyos</p>
+                    </div>
+                    <div class="content-card">
+                        <h3 class="card-title">Luis de Troya</h3>
+                        <p class="card-text">"Catecismo na Pinaglalaanan..." - Katekismo para sa pagtuturo ng Kristiyanismo</p>
+                    </div>
+                    <div class="content-card">
+                        <h3 class="card-title">Roman de los Angeles</h3>
+                        <p class="card-text">"Buhay ni Sta. Maria Magdalena" - Talambuhay ng santa</p>
+                    </div>
+                    <div class="content-card">
+                        <h3 class="card-title">Francisco Benchuchillo</h3>
+                        <p class="card-text">"Caragliang Pagsasalita Nang Aral..." - Aral at patnubay sa pananampalataya</p>
+                    </div>
                 </div>
-                <ul class="bullet-points">
-                    <li>Mas matagumpay ang Kristiyanismo gamit ang katutubong wika</li>
-                    <li>Mas katanggap-tanggap sa mga katutubo</li>
-                    <li>Napreserba ang ilang salitang Kastila tulad ng misa, rosaryo, doktrina</li>
-                </ul>
             </div>
-            <div class="slide-number">5</div>
         </section>
 
         <!-- Slide 6: Ikalawang Yugto Title -->
-        <section class="slide title-slide" data-slide="6" style="background: linear-gradient(135deg, rgba(44,36,22,0.9), rgba(26,20,16,0.9)), url('https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=1600') center/cover;">
+        <section class="slide hero-slide" data-slide="6" style="background: linear-gradient(135deg, rgba(10,10,10,0.8), rgba(26,20,16,0.9)), url('https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=1600&q=80') center/cover;">
             <div class="slide-content">
-                <h1 class="title-main">Kabanata II</h1>
-                <h2 class="subtitle">Ikalawang Yugto ng Kasiglahan</h2>
+                <p class="section-number">KABANATA II</p>
+                <h1 class="hero-title">Ikalawang Yugto ng Kasiglahan</h1>
+                <p class="hero-subtitle">Panahon ng Pananakop ng Amerika (1898-1946)</p>
             </div>
-            <div class="slide-number">6</div>
         </section>
 
-        <!-- Slide 7: Pagpapakilala sa Ikalawang Yugto -->
-        <section class="slide" data-slide="7" style="background: url('https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=1600') center/cover;">
+        <!-- Slide 7: Ikalawang Yugto - Pagbabago -->
+        <section class="slide content-slide" data-slide="7">
             <div class="slide-content">
-                <h2 class="slide-title">Ikalawang Yugto</h2>
-                <div class="photo-container">
-                    <img src="https://images.unsplash.com/photo-1509021436665-8f07dbf5bf1d?w=800" alt="American Era">
+                <p class="section-number">IKALAWANG YUGTO</p>
+                <h2 class="slide-title">Pagbabago ng Kasangkapan</h2>
+                
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1200&q=80" alt="American Era">
                 </div>
-                <div class="content-box">
-                    <p>Nang mapalitan ng America ang España bilang mananakop ng Pilipinas, nagbago rin ang papel ng pagsasaling-wika. Kung relihiyon ang naging pangunahing kasangkapan ng Kastila, edukasyon at wikang Ingles naman ang ginamit ng mga Amerikano.</p>
+                
+                <p class="slide-description">
+                    Nang mapalitan ng Amerika ang España bilang mananakop ng Pilipinas, nagbago rin ang papel ng pagsasaling-wika. Kung relihiyon ang naging pangunahing kasangkapan ng Kastila, edukasyon at wikang Ingles naman ang ginamit ng mga Amerikano.
+                </p>
+                
+                <div class="content-grid">
+                    <div class="content-card">
+                        <h3 class="card-title">Panahon ng Kastila</h3>
+                        <p class="card-text">Relihiyon ang pangunahing instrumento ng pananakop at pagpapalaganap ng impluwensya</p>
+                    </div>
+                    <div class="content-card">
+                        <h3 class="card-title">Panahon ng Amerikano</h3>
+                        <p class="card-text">Edukasyon at wikang Ingles ang ginamit na kasangkapan para sa kolonisasyon</p>
+                    </div>
                 </div>
-            </div>
-            <div class="slide-number">7</div>
-        </section>
-
-        <!-- Slide 8: Mahahalagang Punto -->
-        <section class="slide" data-slide="8" style="background: url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=1600') center/cover;">
-            <div class="slide-content">
-                <h2 class="slide-title">Mahahalagang Punto</h2>
-                <div class="photo-container">
-                    <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=800" alt="Books">
-                </div>
-                <ul class="bullet-points">
-                    <li>Panahon ng Kastila: relihiyon ang pangunahing instrumento</li>
-                    <li>Panahon ng Amerikano: edukasyon at wikang Ingles</li>
-                    <li>Nagpatuloy ang pagsasalin ng mga tekstong Kastila</li>
+                
+                <ul class="bullet-list">
+                    <li>Nagpatuloy pa rin ang pagsasalin ng mga akdang Kastila sa Filipino</li>
                     <li>Nagsimula ring isalin sa pambansang wika ang mga akdang Ingles</li>
+                    <li>Lumawak ang saklaw ng pagsasaling-wika mula relihiyon tungo sa edukasyon</li>
                 </ul>
             </div>
-            <div class="slide-number">8</div>
         </section>
 
-        <!-- Slide 9: Ikatlong Yugto Title -->
-        <section class="slide title-slide" data-slide="9" style="background: linear-gradient(135deg, rgba(44,36,22,0.9), rgba(26,20,16,0.9)), url('https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=1600') center/cover;">
+        <!-- Slide 8: Ikalawang Yugto - Mga Salin -->
+        <section class="slide content-slide" data-slide="8">
             <div class="slide-content">
-                <h1 class="title-main">Kabanata III</h1>
-                <h2 class="subtitle">Ikatlong Yugto ng Kasiglahan</h2>
-            </div>
-            <div class="slide-number">9</div>
-        </section>
-
-        <!-- Slide 10: Pangunahing Ideya ng Ikatlong Yugto -->
-        <section class="slide" data-slide="10" style="background: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1600') center/cover;">
-            <div class="slide-content">
-                <h2 class="slide-title">Pangkalahatang Ideya</h2>
-                <div class="photo-container">
-                    <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=800" alt="Education Materials">
+                <p class="section-number">IKALAWANG YUGTO</p>
+                <h2 class="slide-title">Mga Halimbawa ng Salin: Nobela at Kwento</h2>
+                
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=1200&q=80" alt="Books and Literature">
                 </div>
-                <ul class="bullet-points">
-                    <li>Pagsasalin sa Filipino ng mga materyales na pampaaralan</li>
-                    <li>Kabilang: aklat, patnubay, sanggunian, gramatika</li>
-                    <li>Kasabay ng patakarang bilinggwal sa edukasyon</li>
+                
+                <h3 class="card-title" style="margin-top: 30px;">Maikling Nobela</h3>
+                <ul class="bullet-list">
+                    <li>Leonardo A. Dianzon at Gerardo Chanco – "Ang Buhay ay Pag-ibig" (mula sa "Vivir es Amar" ni Manuel Ibo Alfaro, Ang Mithi, Okt. 1917 – Mar. 1918)</li>
+                    <li>Francisco Laksamana – "Dugo sa Dugo" (mula sa "Lucha de Razas" ni Bradon, Taliba, 1912)</li>
+                </ul>
+                
+                <h3 class="card-title" style="margin-top: 30px;">Maikling Kwento</h3>
+                <ul class="bullet-list">
+                    <li>Patricio Mariano – "Mga Alamat" (mula sa "El Filibusterismo" ni Jose P. Rizal, Muling Pagsilang, 1904)</li>
+                    <li>Deogracias A. Rosario – "Dafne at Apolo", "Alamat ng Laurel" (mula sa "A Book of Fables" ni Bulfinch, Ang Democracia, Hunyo 1913)</li>
                 </ul>
             </div>
-            <div class="slide-number">10</div>
         </section>
 
-        <!-- Slide 11: Ikaapat na Yugto Title -->
-        <section class="slide title-slide" data-slide="11" style="background: linear-gradient(135deg, rgba(44,36,22,0.9), rgba(26,20,16,0.9)), url('https://images.unsplash.com/photo-1516979187457-637abb4f9353?w=1600') center/cover;">
+        <!-- Slide 9: Ikalawang Yugto - Dula at Tula -->
+        <section class="slide content-slide" data-slide="9">
             <div class="slide-content">
-                <h1 class="title-main">Kabanata IV</h1>
-                <h2 class="subtitle">Ikaapat na Yugto ng Kasiglahan</h2>
-            </div>
-            <div class="slide-number">11</div>
-        </section>
-
-        <!-- Slide 12: Kahulugan -->
-        <section class="slide" data-slide="12" style="background: url('https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=1600') center/cover;">
-            <div class="slide-content">
-                <h2 class="slide-title">Ikaapat na Yugto</h2>
-                <div class="photo-container">
-                    <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800" alt="Indigenous Literature">
+                <p class="section-number">IKALAWANG YUGTO</p>
+                <h2 class="slide-title">Mga Halimbawa ng Salin: Dula at Tula</h2>
+                
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=1200&q=80" alt="Theater and Poetry">
                 </div>
-                <div class="content-box">
-                    <p>Ang ikaapat na yugto ng kasiglahan sa pagsasaling-wika ay ang <strong>pagsasalin ng katutubong panitikan sa Filipino</strong> upang makabuo ng tunay na pambansang panitikan.</p>
-                </div>
-            </div>
-            <div class="slide-number">12</div>
-        </section>
-
-        <!-- Slide 13: Kahalagahan -->
-        <section class="slide" data-slide="13" style="background: url('https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=1600') center/cover;">
-            <div class="slide-content">
-                <h2 class="slide-title">Kahalagahan ng Pagsasaling-wika</h2>
-                <div class="photo-container">
-                    <img src="https://images.unsplash.com/photo-1519074069444-1ba4fff66d16?w=800" alt="Cultural Heritage">
-                </div>
-                <ul class="bullet-points">
-                    <li>Mapayaman ang pambansang panitikan</li>
-                    <li>Maiwasan ang pagiging "nawawalang kaluluwa" ng kabataan</li>
-                    <li>Mabigyan ng koneksyon sa sariling wikang katutubo</li>
-                    <li>Mabigyan ng pambansang panitikan</li>
+                
+                <h3 class="card-title" style="margin-top: 30px;">Dula</h3>
+                <ul class="bullet-list">
+                    <li>Julian C. Dula Balmaseda – "Ang Hampas-Lupa" (mula sa "The Vagabond" ni Jacinto Venavente)</li>
+                    <li>Patricio Mariano – "Rizal" (mula sa 4-na-tagpong dula ni Juan Utor y Fernandez, 1909)</li>
+                    <li>Jose M. Rivera – "Simoun" (mula sa "El Filibusterismo" ni Jose Rizal, 1916)</li>
+                    <li>Arsenio R. Afan – "Pulo ng Hiwaga" (mula sa "Gulliver's Travels" ni Swift, 1932-1933)</li>
+                </ul>
+                
+                <h3 class="card-title" style="margin-top: 30px;">Tula</h3>
+                <ul class="bullet-list">
+                    <li>Vicente Almanzor – "Ang Aking Pahimakas" (mula sa "Mi Ultimo Adios" ni Jose Rizal, 1911)</li>
+                    <li>Jose Corazon de Jesus – "Blanca Nieve" (patulang salin mula sa kwentong "Blanca Nieve", 1919)</li>
                 </ul>
             </div>
-            <div class="slide-number">13</div>
         </section>
 
-        <!-- Slide 14: 1987 Proyekto -->
-        <section class="slide" data-slide="14" style="background: url('https://images.unsplash.com/photo-1476900164809-ff19b8ae5968?w=1600') center/cover;">
+        <!-- Slide 10: Ikalawang Yugto - Proyekto -->
+        <section class="slide content-slide" data-slide="10">
             <div class="slide-content">
+                <p class="section-number">IKALAWANG YUGTO</p>
+                <h2 class="slide-title">Mga Proyekto ng Pagsasalin</h2>
+                
+                <p class="slide-description">
+                    Sina Tinio at Solganik ay nagsalin ng mga tula at dulang banyaga sa mas nauunawaang Filipino upang maiparating ang kilalang akdang pandulaan sa Pilipino. Ipinapalabas ang mga isinaling dula sa mga teatro tulad ng Cultural Center of the Philippines.
+                </p>
+                
+                <div class="content-card" style="margin: 30px 0;">
+                    <h3 class="card-title">National Book Store Project (1971)</h3>
+                    <p class="card-text">
+                        Proyekto ng pagsasalin ng mga popular na nobela at kuwentong pandaigdig para sa paaralan. Karamihan sa mga salin ay ginamitan ng Ingles bilang wikang tulay.
+                    </p>
+                </div>
+                
+                <h3 class="card-title" style="margin-top: 30px;">Mga Kuwentong Pambata na Isinalin</h3>
+                <div class="content-grid">
+                    <div class="content-card">
+                        <p class="card-text">Ang Natutulog na Kagandahan (The Sleeping Beauty)</p>
+                    </div>
+                    <div class="content-card">
+                        <p class="card-text">Sinderela (Cinderella)</p>
+                    </div>
+                    <div class="content-card">
+                        <p class="card-text">Tatlong Munting Baboy (The Three Little Pigs)</p>
+                    </div>
+                    <div class="content-card">
+                        <p class="card-text">Munting Pulang Talukbong (Little Red Riding Hood)</p>
+                    </div>
+                    <div class="content-card">
+                        <p class="card-text">Ang Batang Tinapay (Gingerbread Boy)</p>
+                    </div>
+                    <div class="content-card">
+                        <p class="card-text">Tatlong Lalaking Kambing (The Three Billy Goats)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 11: Ikatlong Yugto Title -->
+        <section class="slide hero-slide" data-slide="11" style="background: linear-gradient(135deg, rgba(10,10,10,0.8), rgba(26,20,16,0.9)), url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=1600&q=80') center/cover;">
+            <div class="slide-content">
+                <p class="section-number">KABANATA III</p>
+                <h1 class="hero-title">Ikatlong Yugto ng Kasiglahan</h1>
+                <p class="hero-subtitle">Pagsasalin ng Materyales Pampaaralan</p>
+            </div>
+        </section>
+
+        <!-- Slide 12: Ikatlong Yugto - Edukasyon -->
+        <section class="slide content-slide" data-slide="12">
+            <div class="slide-content">
+                <p class="section-number">IKATLONG YUGTO</p>
+                <h2 class="slide-title">Pokus sa Edukasyon</h2>
+                
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=1200&q=80" alt="Education">
+                </div>
+                
+                <p class="slide-description">
+                    Ang ikatlong yugto ay nakatuon sa pagsasalin sa Filipino ng mga materyales na pampaaralan na orihinal na nasa Ingles. Kabilang dito ang mga aklat, patnubay, sanggunian, at gramatika. Ito ay kasabay ng patakarang bilinggwal sa edukasyon.
+                </p>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <p class="timeline-year">1974</p>
+                            <p class="timeline-text">Department Order No. 25, s. 1974 - Simula ng bilinggwal na patakaran sa edukasyon</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <p class="timeline-year">1987</p>
+                            <p class="timeline-text">Department Order No. 52 - Nirebisa ang patakaran. Mas maraming kursong itinuro sa Filipino kaysa Ingles</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <p class="timeline-year">2000</p>
+                            <p class="timeline-text">Rekomendasyon ng EDCOM - Filipino bilang wikang panturo sa elementarya at sekundarya</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 13: Ikatlong Yugto - Mga Salin -->
+        <section class="slide content-slide" data-slide="13">
+            <div class="slide-content">
+                <p class="section-number">IKATLONG YUGTO</p>
+                <h2 class="slide-title">Mga Halimbawa ng Isinaling Materyales</h2>
+                
+                <p class="slide-description">
+                    Malawakang pagsasalin ng materyales at kagamitang panturo upang suportahan ang paggamit ng Filipino bilang wikang panturo.
+                </p>
+                
+                <div class="content-grid">
+                    <div class="content-card">
+                        <h3 class="card-title">Teresita Almanzor et al.</h3>
+                        <p class="card-text">"Ikaapat at Ikalimang Bahagi ng A Programmed Introduction to Linguistics" (PNC, 1971)</p>
+                    </div>
+                    <div class="content-card">
+                        <h3 class="card-title">Isidro S. Cailles</h3>
+                        <p class="card-text">"Elementary Science IV: A Curriculum Guide for Teachers" (PNC, 1970)</p>
+                    </div>
+                    <div class="content-card">
+                        <h3 class="card-title">Felicidad B. Castillo</h3>
+                        <p class="card-text">"Revised Program of the Girl Scouts" (PNC, 1972)</p>
+                    </div>
+                    <div class="content-card">
+                        <h3 class="card-title">Araw A. de la Cruz</h3>
+                        <p class="card-text">"Ikatlong Kabanata ng Tagalog Reference Grammar" (PNC, 1968)</p>
+                    </div>
+                    <div class="content-card">
+                        <h3 class="card-title">Benefrida M. Duarte</h3>
+                        <p class="card-text">"Unang Bahagi ng A Programmed Introduction to Linguistics" (PNC, 1971)</p>
+                    </div>
+                    <div class="content-card">
+                        <h3 class="card-title">Virginia J. Fajardo</h3>
+                        <p class="card-text">"A Teaching Guide in Home Economics for Grade VI" (PNC, 1971)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 14: Ikaapat na Yugto Title -->
+        <section class="slide hero-slide" data-slide="14" style="background: linear-gradient(135deg, rgba(10,10,10,0.8), rgba(26,20,16,0.9)), url('https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=1600&q=80') center/cover;">
+            <div class="slide-content">
+                <p class="section-number">KABANATA IV</p>
+                <h1 class="hero-title">Ikaapat na Yugto ng Kasiglahan</h1>
+                <p class="hero-subtitle">Pagsasalin ng Katutubong Panitikan</p>
+            </div>
+        </section>
+
+        <!-- Slide 15: Ikaapat na Yugto - Kahulugan -->
+        <section class="slide content-slide" data-slide="15">
+            <div class="slide-content">
+                <p class="section-number">IKAAPAT NA YUGTO</p>
+                <h2 class="slide-title">Tungo sa Tunay na Pambansang Panitikan</h2>
+                
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1519791883288-dc8bd696e667?w=1200&q=80" alt="Indigenous Literature">
+                </div>
+                
+                <p class="slide-description">
+                    Ang ikaapat na yugto ng kasiglahan sa pagsasaling-wika ay ang pagsasalin ng katutubong panitikan sa Filipino upang makabuo ng tunay na pambansang panitikan. Karamihan sa mga akda ng ibang pangkat-etniko ay di-nasusulat o hindi naisalin at hindi bahagi ng pambansang kamalayan.
+                </p>
+                
+                <ul class="bullet-list">
+                    <li>Mapayaman ang pambansang panitikan sa pamamagitan ng pagdaragdag ng iba't ibang katutubong akda</li>
+                    <li>Maiwasan ang pagiging "nawawalang kaluluwa" ng kabataan sa sariling kultura</li>
+                    <li>Mabigyan sila ng koneksyon sa sariling wikang katutubo at tradisyon</li>
+                    <li>Mabigyan ng pambansang panitikan sa halip na puro banyagang impluwensya</li>
+                    <li>Mapreserba at maipasa sa susunod na henerasyon ang mga katutubong kuwento at kaalaman</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Slide 16: Ikaapat na Yugto - Proyekto 1987 -->
+        <section class="slide content-slide" data-slide="16">
+            <div class="slide-content">
+                <p class="section-number">IKAAPAT NA YUGTO</p>
                 <h2 class="slide-title">Proyekto ng Taong 1987</h2>
-                <div class="photo-container">
-                    <img src="https://images.unsplash.com/photo-1509021436665-8f07dbf5bf1d?w=800" alt="Project">
+                
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=1200&q=80" alt="1987 Project">
                 </div>
-                <div class="content-box">
-                    <p>Isinagawa ng <strong>LEDCO at SLATE</strong> (DECS at PNU) sa tulong ng Ford Foundation ang isang proyekto sa pagsasaling-wika.</p>
+                
+                <p class="slide-description">
+                    Isinagawa ng LEDCO at SLATE (DECS at PNU) sa tulong ng Ford Foundation ang isang proyekto sa pagsasaling-wika na nahati sa dalawang bahagi.
+                </p>
+                
+                <div class="content-grid">
+                    <div class="content-card">
+                        <h3 class="card-title">Unang Bahagi: Pagsangguni</h3>
+                        <p class="card-text">
+                            Inanyayahan sa isang kumperensya ang kinikilalang mga pangunahing manunulat at iskolar sa pitong pangunahing wika ng bansa: Cebuano, Ilocano, Hiligaynon, Bicol, Samar-Leyte, Pampango, at Pangasinan.
+                        </p>
+                    </div>
+                    <div class="content-card">
+                        <h3 class="card-title">Ikalawang Bahagi: Pagsasalin</h3>
+                        <p class="card-text">
+                            Ang aktwal na pagsasalin ng mga piling akda mula sa mga katutubong wika patungo sa Filipino upang maging bahagi ng pambansang panitikan.
+                        </p>
+                    </div>
                 </div>
-                <ul class="bullet-points">
-                    <li><strong>Pagsangguni</strong> - Ang unang bahagi</li>
-                    <li><strong>Pagsasalin</strong> - Ang ikalawang bahagi</li>
-                </ul>
-            </div>
-            <div class="slide-number">14</div>
-        </section>
-
-        <!-- Slide 15: Ikalimang Yugto -->
-        <section class="slide title-slide" data-slide="15" style="background: linear-gradient(135deg, rgba(44,36,22,0.9), rgba(26,20,16,0.9)), url('https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=1600') center/cover;">
-            <div class="slide-content">
-                <h1 class="title-main">Kabanata V</h1>
-                <h2 class="subtitle">Ikalimang Yugto: Afro-Asian Literature</h2>
-            </div>
-            <div class="slide-number">15</div>
-        </section>
-
-        <!-- Slide 16: Afro-Asian Literature -->
-        <section class="slide" data-slide="16" style="background: url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=1600') center/cover;">
-            <div class="slide-content">
-                <h2 class="slide-title">Ikalimang Yugto</h2>
-                <div class="photo-container">
-                    <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800" alt="Afro-Asian Literature">
-                </div>
-                <div class="content-box">
-                    <p>Nakatuon ang ilang manunulat sa pagsasalin ng <strong>panitikang Afro-Asian</strong>, na itinuturing na ikalimang yugto ng kasiglahan sa pagsasaling-wika.</p>
+                
+                <div class="content-card" style="margin-top: 30px;">
+                    <h3 class="card-title">GUMIL - Samahan ng Ilocano Writers</h3>
+                    <p class="card-text">
+                        Isang samahan ng mga manunulat na Ilocano na nagsalin ng mahuhusay na kwento mula Iloco sa Filipino sa aklat na "KURDITAN". Ito ay nagbigay daan sa pagsasama ng mga orihinal na akda sa pambansang panitikan at nagbukas ng daan para sa iba pang pangunahing katutubong wika.
+                    </p>
                 </div>
             </div>
-            <div class="slide-number">16</div>
         </section>
 
-        <!-- Slide 17: Komisyon sa Wikang Filipino -->
-        <section class="slide" data-slide="17" style="background: url('https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=1600') center/cover;">
+        <!-- Slide 17: Ikaapat na Yugto - Mga Salin -->
+        <section class="slide content-slide" data-slide="17">
             <div class="slide-content">
-                <h2 class="slide-title">Komisyon sa Wikang Filipino</h2>
-                <div class="photo-container">
-                    <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800" alt="Commission">
+                <p class="section-number">IKAAPAT NA YUGTO</p>
+                <h2 class="slide-title">Mga Halimbawa ng Salin</h2>
+                
+                <div class="content-grid">
+                    <div class="content-card">
+                        <h3 class="card-title">Angel A. Acacio (1969)</h3>
+                        <p class="card-text">
+                            Pagsasalin ng "Biag ni Lam-ang" at pag-aaral ng matandang kalinangang Iloco. Isa sa mga pinakamahalagang epiko ng Pilipinas.
+                        </p>
+                    </div>
+                    <div class="content-card">
+                        <h3 class="card-title">Evencia Andrade (1970)</h3>
+                        <p class="card-text">
+                            Pagsasalin ng mga piling kwentong-bayan sa Maguindanao sa Pilipino at Cebuano. Nagpapakita ng kayamanan ng kultura ng Mindanao.
+                        </p>
+                    </div>
+                    <div class="content-card">
+                        <h3 class="card-title">Felicitas C. Cinco (1968)</h3>
+                        <p class="card-text">
+                            Pagsasalin ng mga alamat, kwentong-bayan, talambuhay, sayaw at awit mula sa iba't ibang rehiyon ng Pilipinas.
+                        </p>
+                    </div>
                 </div>
-                <div class="content-box">
-                    <p>Ang Komisyon sa Wikang Filipino ang nangunguna sa pagsasaling-wika sa bansa. Nagsasalin mula sa karatula ng pamahalaan hanggang sa maseselang dokumento gaya ng Saligang-batas.</p>
-                </div>
-            </div>
-            <div class="slide-number">17</div>
-        </section>
-
-        <!-- Slide 18: Pangmatagalan na Vision -->
-        <section class="slide" data-slide="18" style="background: url('https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=1600') center/cover;">
-            <div class="slide-content">
-                <h2 class="slide-title">Pangmatagalan na Vision</h2>
-                <div class="photo-container">
-                    <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800" alt="Vision">
-                </div>
-                <ul class="bullet-points">
-                    <li>Mas malawak na partisipasyon ng masang Pilipino</li>
-                    <li>Pagpapahalaga sa propesyong pagsasaling-wika</li>
-                    <li>Pagpapalakas ng pambansang kultura at panitikan</li>
-                </ul>
-            </div>
-            <div class="slide-number">18</div>
-        </section>
-
-        <!-- Slide 19: Closing Slide -->
-        <section class="slide title-slide" data-slide="19" style="background: linear-gradient(135deg, rgba(44,36,22,0.9), rgba(26,20,16,0.9)), url('https://images.unsplash.com/photo-1516979187457-637abb4f9353?w=1600') center/cover;">
-            <div class="slide-content">
-                <h1 class="title-main">Maraming Salamat</h1>
-                <h2 class="subtitle">Kasaysayan ng Pagsasaling-wika sa Pilipinas</h2>
-                <p class="presenter-info">
-                    Yance Lean Pastoral | Arriane Mercado<br>
-                    Sofia Latonero | Micah Palmaira
+                
+                <p class="slide-description" style="margin-top: 40px;">
+                    Ang mga pagsasaling ito ay nagpapakita ng pagkakaiba-iba at kayamanan ng kulturang Pilipino. Sa pamamagitan ng pagsasalin, ang mga akdang ito ay naging accessible sa mas malawak na audience at naging bahagi ng kolektibong kamalayan ng bansa.
                 </p>
             </div>
-            <div class="slide-number">19</div>
+        </section>
+
+        <!-- Slide 18: Ikalimang Yugto Title -->
+        <section class="slide hero-slide" data-slide="18" style="background: linear-gradient(135deg, rgba(10,10,10,0.8), rgba(26,20,16,0.9)), url('https://images.unsplash.com/photo-1509021436665-8f07dbf5bf1d?w=1600&q=80') center/cover;">
+            <div class="slide-content">
+                <p class="section-number">KABANATA V</p>
+                <h1 class="hero-title">Ikalimang Yugto ng Kasiglahan</h1>
+                <p class="hero-subtitle">Pagsasalin ng Panitikang Afro-Asian</p>
+            </div>
+        </section>
+
+        <!-- Slide 19: Ikalimang Yugto - Afro-Asian -->
+        <section class="slide content-slide" data-slide="19">
+            <div class="slide-content">
+                <p class="section-number">IKALIMANG YUGTO</p>
+                <h2 class="slide-title">Panitikang Afro-Asian</h2>
+                
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=1200&q=80" alt="Afro-Asian Literature">
+                </div>
+                
+                <p class="slide-description">
+                    Nakatuon ang ilang manunulat sa pagsasalin ng panitikang Afro-Asian, na itinuturing na ikalimang yugto ng kasiglahan sa pagsasaling-wika. Kasama na ito sa kurikulum ng hayskul, bagama't Ingles pa ang midyum, at inaasahang ituturo na sa Filipino sa hinaharap.
+                </p>
+                
+                <div class="content-card">
+                    <h3 class="card-title">Puna ni Isagani Cruz</h3>
+                    <p class="card-text">
+                        Ayon kay Isagani Cruz, mas madaling makita ng mga Pilipino ang banyagang likha kaysa ang mga gawa ng mga kalapit-bansa. Kaya ang pagsasama ng Afro-Asian Literature sa kurikulum ay isang pagwawasto sa nakaraan.
+                    </p>
+                </div>
+                
+                <ul class="bullet-list">
+                    <li>Nagbibigay ng mas malawak na pananaw sa panitikan ng Asya at Africa</li>
+                    <li>Nakakatulong sa pag-unawa ng kultura ng mga kalapit-bansa</li>
+                    <li>Nagpapalakas ng regional at continental na pagkakakilanlan</li>
+                    <li>Lumilikha ng mas malalim na koneksyon sa kapwa Asyano at Aprikano</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Slide 20: Ikalimang Yugto - Mga Organisasyon -->
+        <section class="slide content-slide" data-slide="20">
+            <div class="slide-content">
+                <p class="section-number">IKALIMANG YUGTO</p>
+                <h2 class="slide-title">Mga Organisasyon at Proyekto</h2>
+                
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1519791883288-dc8bd696e667?w=1200&q=80" alt="Organizations">
+                </div>
+                
+                <div class="content-grid">
+                    <div class="content-card">
+                        <h3 class="card-title">Toyota Foundation</h3>
+                        <p class="card-text">
+                            Pinondohan ng Toyota Foundation sa pakikipagtulungan ng Solidarity Foundation ang proyekto upang isalin sa Filipino ang mga piling panitikan ng kalapit-bansa.
+                        </p>
+                    </div>
+                    <div class="content-card">
+                        <h3 class="card-title">Rolando Tinio at Behn Cervantes</h3>
+                        <p class="card-text">
+                            Sa drama, patuloy ang pagsasalin ng banyagang dula sa pangunguna nina Rolando Tinio at Behn Cervantes. Nag-ambag sila sa pagpapayaman ng dulang Pilipino.
+                        </p>
+                    </div>
+                    <div class="content-card">
+                        <h3 class="card-title">NCCA at P.E.T.A.</h3>
+                        <p class="card-text">
+                            Nakikipag-ugnayan ang National Commission for Culture and the Arts (NCCA) sa iba't ibang samahan tulad ng Philippine Educational Theater Association (P.E.T.A.) upang isulong ang mga proyektong nagpapalago sa wikang pambansa at sa kultura at sining ng Pilipinas.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 21: Komisyon sa Wikang Filipino -->
+        <section class="slide content-slide" data-slide="21">
+            <div class="slide-content">
+                <p class="section-number">KASALUKUYAN</p>
+                <h2 class="slide-title">Komisyon sa Wikang Filipino</h2>
+                
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&q=80" alt="Commission">
+                </div>
+                
+                <p class="slide-description">
+                    Ang Komisyon sa Wikang Filipino (dating Surian/Linangan ng Wikang Pambansa) ang nangunguna sa pagsasaling-wika sa bansa. Nagsasalin mula sa karatula ng pamahalaan hanggang sa maseselang dokumento gaya ng Saligang-batas at mga kasunduan sa panlabas.
+                </p>
+                
+                <div class="content-card">
+                    <h3 class="card-title">Pagsasaling-wika sa Pilipinas</h3>
+                    <p class="card-text">
+                        Ipinakita ni Punong Komisyoner Ponciano B. Pineda na ang pagsasaling-wika sa Pilipinas ay musmos pa sapagkat wala pang opisyal na talaan ng Registered Translators. Kahit na may mga M.A. graduate at espesyalisadong sa Filipino o Ingles na may tesis sa pagsasaling-wika.
+                    </p>
+                </div>
+                
+                <ul class="bullet-list">
+                    <li>Ihanda ng Komisyon ang opisyal na talaan ng mga tagapagsaling-wika</li>
+                    <li>Itakda ang mga kaukulang proseso at pamantayan</li>
+                    <li>Mahalaga ang pagtatatag ng samahan sa larangan ng pagsasaling-wika</li>
+                    <li>Palakasin ang espesyalisasyon sa mga unibersidad at kolehiyo</li>
+                    <li>Magbigay ng sertipikasyon at pagkilala sa mga propesyonal na tagasalin</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Slide 22: Pangmatagalan na Vision -->
+        <section class="slide content-slide" data-slide="22">
+            <div class="slide-content">
+                <p class="section-number">HINAHARAP</p>
+                <h2 class="slide-title">Pangmatagalan na Vision</h2>
+                
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=1200&q=80" alt="Future Vision">
+                </div>
+                
+                <p class="slide-description">
+                    Sa patuloy na pag-akyat ng Filipino bilang wikang panturo, masisiguro ang mas malawak na partisipasyon ng masang Pilipino sa edukasyon at kultura.
+                </p>
+                
+                <div class="content-grid">
+                    <div class="content-card">
+                        <h3 class="card-title">Mas Malawak na Partisipasyon</h3>
+                        <p class="card-text">
+                            Ang paggamit ng Filipino sa edukasyon ay magbubukas ng mas maraming oportunidad para sa masang Pilipino na makapag-aral at makabahagi sa pambansang diskurso.
+                        </p>
+                    </div>
+                    <div class="content-card">
+                        <h3 class="card-title">Pagpapahalaga sa Propesyon</h3>
+                        <p class="card-text">
+                            Ang pagsasaling-wika ay kikilalanin bilang isang mahalagang propesyon na nangangailangan ng espesyalisadong kaalaman at kasanayan.
+                        </p>
+                    </div>
+                    <div class="content-card">
+                        <h3 class="card-title">Pagpapalakas ng Kultura</h3>
+                        <p class="card-text">
+                            Ang pambansang kultura at panitikan ay lalo pang yayaman sa pamamagitan ng patuloy na pagsasalin at pagpapalaganap ng iba't ibang akda.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 23: Konklusyon -->
+        <section class="slide content-slide" data-slide="23">
+            <div class="slide-content">
+                <p class="section-number">KONKLUSYON</p>
+                <h2 class="slide-title">Mga Pangunahing Aral</h2>
+                
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1519791883288-dc8bd696e667?w=1200&q=80" alt="Conclusion">
+                </div>
+                
+                <ul class="bullet-list">
+                    <li><strong>Unang Yugto:</strong> Pagsasalin ng panrelihiyong akda noong panahon ng Kastila para sa pagpapalaganap ng Kristiyanismo</li>
+                    <li><strong>Ikalawang Yugto:</strong> Pagsasalin ng mga akdang pampanitikan mula Kastila at Ingles noong panahon ng Amerika</li>
+                    <li><strong>Ikatlong Yugto:</strong> Pagsasalin ng materyales pampaaralan upang suportahan ang bilinggwal na edukasyon</li>
+                    <li><strong>Ikaapat na Yugto:</strong> Pagsasalin ng katutubong panitikan upang makabuo ng tunay na pambansang panitikan</li>
+                    <li><strong>Ikalimang Yugto:</strong> Pagsasalin ng panitikang Afro-Asian upang palawakin ang pandaigdigang pananaw</li>
+                </ul>
+                
+                <p class="slide-description" style="margin-top: 40px;">
+                    Ang kasaysayan ng pagsasaling-wika sa Pilipinas ay sumasalamin sa ating kolonyal na nakaraan, pambansang pagkakakilanlan, at patuloy na pagsisikap na mapayaman ang ating kultura at wika.
+                </p>
+            </div>
+        </section>
+
+        <!-- Slide 24: Closing -->
+        <section class="slide hero-slide" data-slide="24" style="background: linear-gradient(135deg, rgba(10,10,10,0.8), rgba(26,20,16,0.9)), url('https://images.unsplash.com/photo-1516979187457-637abb4f9353?w=1600&q=80') center/cover;">
+            <div class="slide-content">
+                <h1 class="hero-title">Maraming Salamat</h1>
+                <p class="hero-subtitle">Sa inyong pakikinig at atensyon</p>
+                
+                <div class="presenters" style="margin-top: 60px;">
+                    <div class="presenter-card">
+                        <p class="presenter-name">Yance Lean Pastoral</p>
+                    </div>
+                    <div class="presenter-card">
+                        <p class="presenter-name">Arriane Mercado</p>
+                    </div>
+                    <div class="presenter-card">
+                        <p class="presenter-name">Sofia Latonero</p>
+                    </div>
+                    <div class="presenter-card">
+                        <p class="presenter-name">Micah Palmaira</p>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 60px; font-size: 1.1rem; color: var(--accent); opacity: 0.8;">
+                    Kasaysayan ng Pagsasaling-wika sa Pilipinas
+                </p>
+            </div>
         </section>
 
     </div>
 
-    <!-- Navigation Controls -->
-    <div class="navigation">
-        <button class="nav-btn prev-btn" onclick="previousSlide()">← Previous</button>
-        <div class="slide-counter"><span id="current-slide">1</span> / <span id="total-slides">20</span></div>
-        <button class="nav-btn next-btn" onclick="nextSlide()">Next →</button>
+    <!-- Navigation -->
+    <div class="nav-container">
+        <div class="nav-content">
+            <button class="nav-btn" id="prevBtn" onclick="navigate(-1)">← Previous</button>
+            
+            <div class="slide-indicator" id="indicators"></div>
+            
+            <div class="slide-counter">
+                <span id="currentSlide">1</span> / <span id="totalSlides">25</span>
+            </div>
+            
+            <button class="nav-btn" id="nextBtn" onclick="navigate(1)">Next →</button>
+        </div>
     </div>
 
     <script>
-let currentSlide = 0;
 const slides = document.querySelectorAll('.slide');
 const totalSlides = slides.length;
+let currentSlide = 0;
 
-document.getElementById('total-slides').textContent = totalSlides;
+document.getElementById('totalSlides').textContent = totalSlides;
 
-function showSlide(n) {
-    if (n >= totalSlides) {
-        currentSlide = 0;
-    } else if (n < 0) {
-        currentSlide = totalSlides - 1;
-    } else {
-        currentSlide = n;
-    }
+// Create indicators
+const indicatorsContainer = document.getElementById('indicators');
+for (let i = 0; i < totalSlides; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'indicator-dot';
+    if (i === 0) dot.classList.add('active');
+    dot.onclick = () => goToSlide(i);
+    indicatorsContainer.appendChild(dot);
+}
 
+function updateSlide() {
+    // Update slide visibility
     slides.forEach((slide, index) => {
-        slide.classList.remove('active', 'prev');
         if (index === currentSlide) {
-            slide.classList.add('active');
-        } else if (index < currentSlide) {
-            slide.classList.add('prev');
+            slide.classList.add('visible');
+        } else {
+            slide.classList.remove('visible');
         }
     });
-
-    document.getElementById('current-slide').textContent = currentSlide + 1;
     
-    const slideNumber = slides[currentSlide].querySelector('.slide-number');
-    if (slideNumber) {
-        slideNumber.textContent = currentSlide;
+    // Update indicators
+    document.querySelectorAll('.indicator-dot').forEach((dot, index) => {
+        if (index === currentSlide) {
+            dot.classList.add('active');
+        } else {
+            dot.classList.remove('active');
+        }
+    });
+    
+    // Update counter
+    document.getElementById('currentSlide').textContent = currentSlide + 1;
+    
+    // Update progress bar
+    const progress = ((currentSlide + 1) / totalSlides) * 100;
+    document.getElementById('progressBar').style.width = progress + '%';
+    
+    // Update buttons
+    document.getElementById('prevBtn').disabled = currentSlide === 0;
+    document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+    
+    // Scroll to slide
+    slides[currentSlide].scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function navigate(direction) {
+    const newSlide = currentSlide + direction;
+    if (newSlide >= 0 && newSlide < totalSlides) {
+        currentSlide = newSlide;
+        updateSlide();
     }
 }
 
-function nextSlide() {
-    showSlide(currentSlide + 1);
+function goToSlide(index) {
+    currentSlide = index;
+    updateSlide();
 }
 
-function previousSlide() {
-    showSlide(currentSlide - 1);
-}
-
+// Keyboard navigation
 document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowRight' || e.key === ' ') {
         e.preventDefault();
-        nextSlide();
+        navigate(1);
     } else if (e.key === 'ArrowLeft') {
         e.preventDefault();
-        previousSlide();
-    } else if (e.key === 'f' || e.key === 'F') {
-        if (!document.fullscreenElement) {
-            document.documentElement.requestFullscreen();
-        } else {
-            document.exitFullscreen();
-        }
+        navigate(-1);
+    } else if (e.key === 'Home') {
+        e.preventDefault();
+        goToSlide(0);
+    } else if (e.key === 'End') {
+        e.preventDefault();
+        goToSlide(totalSlides - 1);
     }
 });
 
-let touchStartX = 0;
-let touchEndX = 0;
+// Touch navigation
+let touchStartY = 0;
+let touchEndY = 0;
 
 document.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY;
 });
 
 document.addEventListener('touchend', (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    if (touchStartX - touchEndX > 50) {
-        nextSlide();
+    touchEndY = e.changedTouches[0].screenY;
+    if (touchStartY - touchEndY > 50) {
+        navigate(1);
     }
-    if (touchEndX - touchStartX > 50) {
-        previousSlide();
+    if (touchEndY - touchStartY > 50) {
+        navigate(-1);
     }
 });
 
-showSlide(currentSlide);
+// Intersection Observer for scroll-based navigation
+const observerOptions = {
+    root: null,
+    threshold: 0.5
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const slideIndex = Array.from(slides).indexOf(entry.target);
+            if (slideIndex !== currentSlide) {
+                currentSlide = slideIndex;
+                updateSlide();
+            }
+        }
+    });
+}, observerOptions);
+
+slides.forEach(slide => observer.observe(slide));
+
+// Initialize
+updateSlide();
     </script>
 </body>
 </html>
