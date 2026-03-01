@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -15,9 +17,22 @@
 html, body {
     width: 100%;
     height: 100%;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Roboto', sans-serif;
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--dark-color) 100%);
     overflow: hidden;
+    background-attachment: fixed;
+}
+
+/* create a subtle wallpaper effect */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.03) 0%, transparent 70%);
+    pointer-events: none;
 }
 
 .presentation-container {
@@ -44,7 +59,41 @@ html, body {
     justify-content: center;
     align-items: center;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    overflow: hidden;
 }
+
+/* add subtle texture overlay on every slide */
+.slide::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        45deg,
+        rgba(255,255,255,0.02),
+        rgba(255,255,255,0.02) 2px,
+        transparent 2px,
+        transparent 4px
+    );
+    pointer-events: none;
+}
+
+/* alternate colors for variety */
+.slide:nth-child(odd) {
+    background: linear-gradient(135deg, var(--light-color) 0%, #e8dfd8 100%);
+}
+
+.slide:nth-child(even) {
+    background: linear-gradient(135deg, #f0ebe4 0%, #e1d7cd 100%);
+}
+
+.slide-1,
+.slide-5,
+.slide-14 {
+    /* keep darker theme on key title slides */
+    background: linear-gradient(135deg, #2c1810 0%, #1a1a1a 100%);
+}
+
 
 .slide.active {
     opacity: 1;
@@ -156,6 +205,10 @@ html, body {
     width: 100%;
     max-width: 1000px;
     animation: slideInUp 1s ease-out 0.2s both;
+    background: rgba(255,255,255,0.85);
+    padding: 40px 60px;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
 }
 
 .slide-title {
@@ -165,51 +218,42 @@ html, body {
     border-bottom: 3px solid var(--accent-color);
     padding-bottom: 15px;
     animation: slideInLeft 1s ease-out 0.3s both;
-}
-
-.content-box {
-    background: rgba(61, 40, 23, 0.08);
-    padding: 30px;
-    border-left: 4px solid var(--accent-color);
-    margin-bottom: 30px;
-    border-radius: 5px;
-    animation: slideInLeft 1s ease-out 0.4s both;
-}
-
-.content-box p {
-    font-size: 1.1rem;
-    color: var(--primary-color);
-    line-height: 1.6;
-}
-
-.bullet-points {
-    list-style: none;
-    margin-top: 30px;
+    letter-spacing: 1px;
 }
 
 .bullet-points li {
     font-size: 1.2rem;
     color: var(--primary-color);
     margin: 15px 0;
-    padding-left: 40px;
+    padding-left: 50px;
     position: relative;
     animation: slideInLeft 1s ease-out;
-}
-
-.bullet-points li:nth-child(2) {
-    animation-delay: 0.3s;
-}
-
-.bullet-points li:nth-child(3) {
-    animation-delay: 0.6s;
+    line-height: 1.6;
 }
 
 .bullet-points li:before {
-    content: "▪";
+    content: "\2022"; /* use dot bullet */
     position: absolute;
     left: 0;
     color: var(--accent-color);
     font-size: 1.5rem;
+    top: 0;
+}
+
+.content-box {
+    background: rgba(61, 40, 23, 0.08);
+    padding: 40px 50px;
+    border-left: 6px solid var(--accent-color);
+    margin-bottom: 30px;
+    border-radius: 10px;
+    animation: slideInLeft 1s ease-out 0.4s both;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.content-box p {
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    line-height: 1.6;
 }
 
 /* Grid Container */
