@@ -59,24 +59,27 @@ body {
 }
 
 .hero-slide {
-    background: linear-gradient(135deg, #1e293b, #334155);
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.92), rgba(51, 65, 85, 0.92)), 
+                url('https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=1600&q=80') center/cover;
+    background-attachment: fixed;
 }
 
 .hero-title {
     font-size: clamp(2rem, 6vw, 3.5rem);
     font-weight: 800;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    background: linear-gradient(135deg, #ffffff, #e0e7ff);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 20px;
     text-align: center;
     animation: fadeInUp 0.8s ease 0.2s both;
+    text-shadow: 0 2px 20px rgba(255, 255, 255, 0.1);
 }
 
 .hero-subtitle {
     font-size: clamp(1rem, 3vw, 1.5rem);
-    color: #64748b;
+    color: #cbd5e1;
     margin-bottom: 40px;
     text-align: center;
     animation: fadeIn 0.8s ease 0.3s both;
@@ -90,11 +93,13 @@ body {
 }
 
 .presenter-card {
-    background: white;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
     padding: 20px 30px;
     border-radius: 20px;
     box-shadow: 0 8px 24px rgba(99,102,241,0.15);
     transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .presenter-card:hover {
