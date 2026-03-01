@@ -351,6 +351,87 @@ body {
     font-weight: 600;
 }
 
+/* Enhanced UI Elements */
+.feature-box {
+    background: linear-gradient(135deg, rgba(212, 165, 116, 0.1), rgba(139, 115, 85, 0.05));
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(212, 165, 116, 0.2);
+    margin: 30px 0;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+}
+
+.feature-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--accent), var(--accent-dark));
+}
+
+.feature-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(212, 165, 116, 0.2);
+    border-color: var(--accent);
+}
+
+.icon-box {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 25px rgba(212, 165, 116, 0.3);
+}
+
+.quote-box {
+    background: linear-gradient(135deg, rgba(212, 165, 116, 0.05), rgba(139, 115, 85, 0.02));
+    padding: 40px;
+    border-radius: 20px;
+    border-left: 5px solid var(--accent);
+    margin: 30px 0;
+    font-style: italic;
+    position: relative;
+}
+
+.quote-box::before {
+    content: '"';
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    font-size: 4rem;
+    color: var(--accent);
+    opacity: 0.2;
+    font-family: Georgia, serif;
+}
+
+.quote-text {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.quote-author {
+    font-size: 1rem;
+    color: var(--accent);
+    font-weight: 600;
+    text-align: right;
+}
+
+.highlight-text {
+    color: var(--accent);
+    font-weight: 600;
+}
+
 /* Progress Bar */
 .progress-bar {
     position: fixed;
@@ -910,72 +991,96 @@ body {
             </div>
         </section>
 
-        <!-- Slide 18: Ikalimang Yugto Title -->
-        <section class="slide hero-slide" data-slide="18" style="background: linear-gradient(135deg, rgba(10,10,10,0.8), rgba(26,20,16,0.9)), url('https://images.unsplash.com/photo-1509021436665-8f07dbf5bf1d?w=1600&q=80') center/cover;">
+        <!-- Slide 18: Ikaapat na Yugto - Ikalimang Bahagi -->
+        <section class="slide content-slide" data-slide="18">
             <div class="slide-content">
-                <p class="section-number">KABANATA V</p>
-                <h1 class="hero-title">Ikalimang Yugto ng Kasiglahan</h1>
-                <p class="hero-subtitle">Pagsasalin ng Panitikang Afro-Asian</p>
-            </div>
-        </section>
-
-        <!-- Slide 19: Ikalimang Yugto - Afro-Asian -->
-        <section class="slide content-slide" data-slide="19">
-            <div class="slide-content">
-                <p class="section-number">IKALIMANG YUGTO</p>
-                <h2 class="slide-title">Panitikang Afro-Asian</h2>
+                <p class="section-number">IKAAPAT NA YUGTO - IKALIMANG BAHAGI</p>
+                <h2 class="slide-title">Pagsasalin ng Panitikang Afro-Asian</h2>
+                
+                <div class="feature-box">
+                    <div class="icon-box">🌏</div>
+                    <p class="slide-description">
+                        Bilang bahagi ng ikaapat na yugto, nakatuon din ang ilang manunulat sa pagsasalin ng <span class="highlight-text">panitikang Afro-Asian</span>. Kasama na ito sa kurikulum ng hayskul, bagama't Ingles pa ang midyum, at inaasahang ituturo na sa Filipino sa hinaharap.
+                    </p>
+                </div>
                 
                 <div class="image-container">
                     <img src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=1200&q=80" alt="Afro-Asian Literature">
                 </div>
                 
-                <p class="slide-description">
-                    Nakatuon ang ilang manunulat sa pagsasalin ng panitikang Afro-Asian, na itinuturing na ikalimang yugto ng kasiglahan sa pagsasaling-wika. Kasama na ito sa kurikulum ng hayskul, bagama't Ingles pa ang midyum, at inaasahang ituturo na sa Filipino sa hinaharap.
-                </p>
-                
-                <div class="content-card">
-                    <h3 class="card-title">Puna ni Isagani Cruz</h3>
-                    <p class="card-text">
-                        Ayon kay Isagani Cruz, mas madaling makita ng mga Pilipino ang banyagang likha kaysa ang mga gawa ng mga kalapit-bansa. Kaya ang pagsasama ng Afro-Asian Literature sa kurikulum ay isang pagwawasto sa nakaraan.
+                <div class="quote-box">
+                    <p class="quote-text">
+                        Mas madaling makita ng mga Pilipino ang banyagang likha kaysa ang mga gawa ng mga kalapit-bansa. Kaya ang pagsasama ng Afro-Asian Literature sa kurikulum ay isang pagwawasto sa nakaraan.
                     </p>
+                    <p class="quote-author">— Isagani Cruz</p>
                 </div>
-                
-                <ul class="bullet-list">
-                    <li>Nagbibigay ng mas malawak na pananaw sa panitikan ng Asya at Africa</li>
-                    <li>Nakakatulong sa pag-unawa ng kultura ng mga kalapit-bansa</li>
-                    <li>Nagpapalakas ng regional at continental na pagkakakilanlan</li>
-                    <li>Lumilikha ng mas malalim na koneksyon sa kapwa Asyano at Aprikano</li>
-                </ul>
             </div>
         </section>
 
-        <!-- Slide 20: Ikalimang Yugto - Mga Organisasyon -->
+        <!-- Slide 19: Ikaapat na Yugto - Kahalagahan ng Afro-Asian -->
+        <section class="slide content-slide" data-slide="19">
+            <div class="slide-content">
+                <p class="section-number">IKAAPAT NA YUGTO - IKALIMANG BAHAGI</p>
+                <h2 class="slide-title">Kahalagahan ng Panitikang Afro-Asian</h2>
+                
+                <div class="content-grid">
+                    <div class="content-card">
+                        <div class="icon-box">📚</div>
+                        <h3 class="card-title">Malawak na Pananaw</h3>
+                        <p class="card-text">Nagbibigay ng mas malawak na pananaw sa panitikan ng Asya at Africa</p>
+                    </div>
+                    <div class="content-card">
+                        <div class="icon-box">🌏</div>
+                        <h3 class="card-title">Pag-unawa ng Kultura</h3>
+                        <p class="card-text">Nakakatulong sa pag-unawa ng kultura ng mga kalapit-bansa</p>
+                    </div>
+                    <div class="content-card">
+                        <div class="icon-box">🤝</div>
+                        <h3 class="card-title">Regional Identity</h3>
+                        <p class="card-text">Nagpapalakas ng regional at continental na pagkakakilanlan</p>
+                    </div>
+                </div>
+                
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1519791883288-dc8bd696e667?w=1200&q=80" alt="Cultural Connection">
+                </div>
+                
+                <p class="slide-description">
+                    Ang pagsasalin ng panitikang Afro-Asian ay lumilikha ng mas malalim na koneksyon sa kapwa Asyano at Aprikano, at nagpapayaman sa pambansang panitikan sa pamamagitan ng pagdaragdag ng iba't ibang perspektibo.
+                </p>
+            </div>
+        </section>
+
+        <!-- Slide 20: Ikaapat na Yugto - Mga Organisasyon -->
         <section class="slide content-slide" data-slide="20">
             <div class="slide-content">
-                <p class="section-number">IKALIMANG YUGTO</p>
+                <p class="section-number">IKAAPAT NA YUGTO</p>
                 <h2 class="slide-title">Mga Organisasyon at Proyekto</h2>
                 
                 <div class="image-container">
-                    <img src="https://images.unsplash.com/photo-1519791883288-dc8bd696e667?w=1200&q=80" alt="Organizations">
+                    <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=1200&q=80" alt="Organizations">
                 </div>
                 
                 <div class="content-grid">
                     <div class="content-card">
+                        <div class="icon-box">🏢</div>
                         <h3 class="card-title">Toyota Foundation</h3>
                         <p class="card-text">
                             Pinondohan ng Toyota Foundation sa pakikipagtulungan ng Solidarity Foundation ang proyekto upang isalin sa Filipino ang mga piling panitikan ng kalapit-bansa.
                         </p>
                     </div>
                     <div class="content-card">
+                        <div class="icon-box">🎭</div>
                         <h3 class="card-title">Rolando Tinio at Behn Cervantes</h3>
                         <p class="card-text">
                             Sa drama, patuloy ang pagsasalin ng banyagang dula sa pangunguna nina Rolando Tinio at Behn Cervantes. Nag-ambag sila sa pagpapayaman ng dulang Pilipino.
                         </p>
                     </div>
                     <div class="content-card">
+                        <div class="icon-box">🎨</div>
                         <h3 class="card-title">NCCA at P.E.T.A.</h3>
                         <p class="card-text">
-                            Nakikipag-ugnayan ang National Commission for Culture and the Arts (NCCA) sa iba't ibang samahan tulad ng Philippine Educational Theater Association (P.E.T.A.) upang isulong ang mga proyektong nagpapalago sa wikang pambansa at sa kultura at sining ng Pilipinas.
+                            Nakikipag-ugnayan ang National Commission for Culture and the Arts (NCCA) sa iba't ibang samahan tulad ng Philippine Educational Theater Association (P.E.T.A.) upang isulong ang mga proyektong nagpapalago sa wikang pambansa.
                         </p>
                     </div>
                 </div>
@@ -992,15 +1097,18 @@ body {
                     <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&q=80" alt="Commission">
                 </div>
                 
-                <p class="slide-description">
-                    Ang Komisyon sa Wikang Filipino (dating Surian/Linangan ng Wikang Pambansa) ang nangunguna sa pagsasaling-wika sa bansa. Nagsasalin mula sa karatula ng pamahalaan hanggang sa maseselang dokumento gaya ng Saligang-batas at mga kasunduan sa panlabas.
-                </p>
-                
-                <div class="content-card">
-                    <h3 class="card-title">Pagsasaling-wika sa Pilipinas</h3>
-                    <p class="card-text">
-                        Ipinakita ni Punong Komisyoner Ponciano B. Pineda na ang pagsasaling-wika sa Pilipinas ay musmos pa sapagkat wala pang opisyal na talaan ng Registered Translators. Kahit na may mga M.A. graduate at espesyalisadong sa Filipino o Ingles na may tesis sa pagsasaling-wika.
+                <div class="feature-box">
+                    <div class="icon-box">🏛️</div>
+                    <p class="slide-description">
+                        Ang Komisyon sa Wikang Filipino (dating Surian/Linangan ng Wikang Pambansa) ang nangunguna sa pagsasaling-wika sa bansa. Nagsasalin mula sa karatula ng pamahalaan hanggang sa maseselang dokumento gaya ng Saligang-batas at mga kasunduan sa panlabas.
                     </p>
+                </div>
+                
+                <div class="quote-box">
+                    <p class="quote-text">
+                        Ang pagsasaling-wika sa Pilipinas ay musmos pa sapagkat wala pang opisyal na talaan ng Registered Translators.
+                    </p>
+                    <p class="quote-author">— Punong Komisyoner Ponciano B. Pineda</p>
                 </div>
                 
                 <ul class="bullet-list">
@@ -1029,18 +1137,21 @@ body {
                 
                 <div class="content-grid">
                     <div class="content-card">
+                        <div class="icon-box">👥</div>
                         <h3 class="card-title">Mas Malawak na Partisipasyon</h3>
                         <p class="card-text">
                             Ang paggamit ng Filipino sa edukasyon ay magbubukas ng mas maraming oportunidad para sa masang Pilipino na makapag-aral at makabahagi sa pambansang diskurso.
                         </p>
                     </div>
                     <div class="content-card">
+                        <div class="icon-box">⭐</div>
                         <h3 class="card-title">Pagpapahalaga sa Propesyon</h3>
                         <p class="card-text">
                             Ang pagsasaling-wika ay kikilalanin bilang isang mahalagang propesyon na nangangailangan ng espesyalisadong kaalaman at kasanayan.
                         </p>
                     </div>
                     <div class="content-card">
+                        <div class="icon-box">🎭</div>
                         <h3 class="card-title">Pagpapalakas ng Kultura</h3>
                         <p class="card-text">
                             Ang pambansang kultura at panitikan ay lalo pang yayaman sa pamamagitan ng patuloy na pagsasalin at pagpapalaganap ng iba't ibang akda.
@@ -1060,17 +1171,23 @@ body {
                     <img src="https://images.unsplash.com/photo-1519791883288-dc8bd696e667?w=1200&q=80" alt="Conclusion">
                 </div>
                 
+                <div class="feature-box">
+                    <div class="icon-box">📖</div>
+                    <h3 class="card-title" style="margin-bottom: 20px;">Limang Yugto ng Kasiglahan</h3>
+                </div>
+                
                 <ul class="bullet-list">
-                    <li><strong>Unang Yugto:</strong> Pagsasalin ng panrelihiyong akda noong panahon ng Kastila para sa pagpapalaganap ng Kristiyanismo</li>
-                    <li><strong>Ikalawang Yugto:</strong> Pagsasalin ng mga akdang pampanitikan mula Kastila at Ingles noong panahon ng Amerika</li>
-                    <li><strong>Ikatlong Yugto:</strong> Pagsasalin ng materyales pampaaralan upang suportahan ang bilinggwal na edukasyon</li>
-                    <li><strong>Ikaapat na Yugto:</strong> Pagsasalin ng katutubong panitikan upang makabuo ng tunay na pambansang panitikan</li>
-                    <li><strong>Ikalimang Yugto:</strong> Pagsasalin ng panitikang Afro-Asian upang palawakin ang pandaigdigang pananaw</li>
+                    <li><strong class="highlight-text">Unang Yugto:</strong> Pagsasalin ng panrelihiyong akda noong panahon ng Kastila para sa pagpapalaganap ng Kristiyanismo</li>
+                    <li><strong class="highlight-text">Ikalawang Yugto:</strong> Pagsasalin ng mga akdang pampanitikan mula Kastila at Ingles noong panahon ng Amerika</li>
+                    <li><strong class="highlight-text">Ikatlong Yugto:</strong> Pagsasalin ng materyales pampaaralan upang suportahan ang bilinggwal na edukasyon</li>
+                    <li><strong class="highlight-text">Ikaapat na Yugto:</strong> Pagsasalin ng katutubong panitikan upang makabuo ng tunay na pambansang panitikan, kasama ang panitikang Afro-Asian</li>
                 </ul>
                 
-                <p class="slide-description" style="margin-top: 40px;">
-                    Ang kasaysayan ng pagsasaling-wika sa Pilipinas ay sumasalamin sa ating kolonyal na nakaraan, pambansang pagkakakilanlan, at patuloy na pagsisikap na mapayaman ang ating kultura at wika.
-                </p>
+                <div class="quote-box" style="margin-top: 40px;">
+                    <p class="quote-text">
+                        Ang kasaysayan ng pagsasaling-wika sa Pilipinas ay sumasalamin sa ating kolonyal na nakaraan, pambansang pagkakakilanlan, at patuloy na pagsisikap na mapayaman ang ating kultura at wika.
+                    </p>
+                </div>
             </div>
         </section>
 
